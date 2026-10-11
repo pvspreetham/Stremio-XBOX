@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap mp rescap">
+
+  <Identity
+    Name="StremioXbox"
+    Publisher="CN=StremioXboxDev"
+    Version="0.1.4.0" />
+
+  <mp:PhoneIdentity PhoneProductId="2e83f343-d138-4c8e-b0b8-35b80f886e35" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+
+  <Properties>
+    <DisplayName>Stremio-XBOX</DisplayName>
+    <PublisherDisplayName>Stremio-XBOX (unofficial)</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="StremioXbox.App">
+      <uap:VisualElements
+        DisplayName="Stremio-XBOX"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png"
+        Description="Unofficial Stremio shell for Xbox with a native player"
+        BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#0C0B11" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <!-- Lets the app reach devices on the home network (e.g. a streaming server on a PC). -->
+    <Capability Name="privateNetworkClientServer" />
+    <!-- Xbox: enables 4K HEVC playback and the larger memory budget that comes with it. -->
+    <rescap:Capability Name="hevcPlayback" />
+  </Capabilities>
+</Package>

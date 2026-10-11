@@ -1,0 +1,57 @@
+<Page
+    x:Class="StremioXbox.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Background="Black">
+
+    <Grid x:Name="RootGrid">
+        <!-- The WebView2 is created in code and inserted at index 0; created in XAML it may not take focus. -->
+
+        <!-- Invisible native text box used only to pass focus through before typing into the page: WebView2's
+             Xbox keyboard delivered keys only right after focus had come back from a native text box. -->
+        <TextBox x:Name="ProxyText" Opacity="0" Width="2" Height="2" MinWidth="0" MinHeight="0" Padding="0"
+                 HorizontalAlignment="Left" VerticalAlignment="Top" IsHitTestVisible="False" IsTabStop="False" IsSpellCheckEnabled="False" IsTextPredictionEnabled="False" />
+
+        <!-- The app's own cursor (left stick moves, A clicks, right stick scrolls); drawn over the page. -->
+        <Canvas x:Name="CursorLayer" IsHitTestVisible="False" Visibility="Collapsed">
+            <Ellipse x:Name="CursorDot" Width="28" Height="28" Fill="#B3FFFFFF" Stroke="#7B5BF5" StrokeThickness="3" />
+        </Canvas>
+
+        <Grid x:Name="PlayerLayer" Visibility="Collapsed" Background="Black">
+            <MediaPlayerElement
+                x:Name="Player"
+                AreTransportControlsEnabled="False"
+                Stretch="Uniform"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch" />
+
+            <!-- Minimal on-screen bar; controller input is handled in code (A/Menu pause, Y audio, X subtitles, D-pad +-10 s, LB/RB +-60 s). -->
+            <Grid x:Name="Osd" VerticalAlignment="Bottom" Padding="64,24,64,40" Background="#B3000000" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock x:Name="OsdTitle" FontSize="22" Foreground="White" TextTrimming="CharacterEllipsis" />
+                    <TextBlock x:Name="OsdInfo" FontSize="20" Foreground="#FFD54F" Margin="0,8,0,0" Visibility="Collapsed" TextTrimming="CharacterEllipsis" />
+                    <ProgressBar x:Name="OsdProgress" Minimum="0" Maximum="1" Height="6" Margin="0,14,0,10" Foreground="#7B5BF5" />
+                    <TextBlock x:Name="OsdTime" FontSize="18" Foreground="#CCFFFFFF" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <Border
+            x:Name="DebugPanel"
+            Visibility="Collapsed"
+            Background="#E6000000"
+            BorderBrush="#7B5BF5"
+            BorderThickness="2"
+            CornerRadius="8"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Margin="48"
+            MaxWidth="1200"
+            Padding="16">
+            <StackPanel>
+                <TextBlock x:Name="DebugHeader" Foreground="#FFD54F" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,8" />
+                <TextBlock x:Name="DebugText" Foreground="White" FontFamily="Consolas" FontSize="13" TextWrapping="Wrap" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

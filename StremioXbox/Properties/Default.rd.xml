@@ -1,0 +1,6 @@
+<!-- Runtime directives for .NET Native (Release builds). -->
+<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
+  <Application>
+    <Assembly Name="*Application*" Dynamic="Required All" />
+  </Application>
+</Directives>
